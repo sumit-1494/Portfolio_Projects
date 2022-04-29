@@ -9,7 +9,7 @@ WHERE location LIKE '%india%'
 --------------------------------------------------------------------------------------------------------
 --LOCATION,CONTINENT AND GLOBAL STATISTICS
 
-SELECT	dea.continent AS Continent,
+SELECT		dea.continent AS Continent,
 		dea.location AS Location,
 		dea.population Population,
 		MAX(dea.total_cases) AS TotalCases,						-- Gives total Number Of Cases for each location
@@ -56,7 +56,7 @@ CREATE TABLE #CovidAnalysis
 	BoosterVaccinations numeric
 )
 INSERT INTO #CovidAnalysis
-SELECT	dea.continent AS Continent,
+SELECT		dea.continent AS Continent,
 		dea.location AS Location,
 		dea.population Population,
 		MAX(dea.total_cases) AS TotalCases,						
@@ -86,12 +86,12 @@ FROM  #CovidAnalysis
 ---------------------------------------------------------------------------------
 
 --LOCATION WISE INFORMATION
-SELECT	Continent,
+SELECT		Continent,
 		Location,
 		Population,
 		TotalCases,
-        TotalCases/Population*100 As PercentPopulationInfect,
-	    TotalTests,
+		TotalCases/Population*100 As PercentPopulationInfect,
+		TotalTests,
 		TotalTests/Population*100 AS PercentPopulationTest,
 		TotalDeaths,
 		TotalDeaths/Population*100 AS PercentPopulationDeath,
@@ -111,11 +111,11 @@ WHERE Continent IS NOT NULL
 
 
 -- CONTINENT WISE INFORMATION
-SELECT	Location,
+SELECT		Location,
 		Population,
 		TotalCases,
-        TotalCases/Population*100 As PercentPopulationInfect,
-	    TotalTests,
+		TotalCases/Population*100 As PercentPopulationInfect,
+		TotalTests,
 		TotalTests/Population*100 AS PercentPopulationTest,
 		TotalDeaths,
 		TotalDeaths/Population*100 AS PercentPopulationDeath,
@@ -135,11 +135,11 @@ WHERE Location IN ('Africa', 'Asia','Europe','North America','Oceania','South Am
 
 
 -- GLOBAL INFORMATION
-SELECT	Location,
+SELECT		Location,
 		Population,
 		TotalCases,
-        TotalCases/Population*100 As PercentPopulationInfect,
-	    TotalTests,
+		TotalCases/Population*100 As PercentPopulationInfect,
+		TotalTests,
 		TotalTests/Population*100 AS PercentPopulationTest,
 		TotalDeaths,
 		TotalDeaths/Population*100 AS PercentPopulationDeath,
@@ -164,7 +164,7 @@ WHERE Location like '%world%'
 WITH DailyCovidStats(Date,Continent,Location,Population,TotalCases,DailyCases,PositiveRate,TestPerCase,StringencyIndex,TotalDeaths,DailyDeaths,TotalTests,DailyTest,DailyTestsSmoothed,TotalVaccinations,DailyVaccinations,DailyVaccinationsSmoothed,AtleastFirstDose,FullVaccinations,BoosterVaccinations,ReproductionRate)
 AS
 (
-SELECT	dea.date AS Date,
+SELECT		dea.date AS Date,
 		dea.continent AS Continent,
 		dea.location AS Location,
 		dea.population Population,
@@ -191,8 +191,8 @@ ON dea.date = vac.date AND
 dea.location = vac.location 
 WHERE dea.location NOT IN('Lower middle income','World','Low income','European Union','International','Upper middle income','High income')
 )
-SELECT Continent,
-	    Location,	
+SELECT 		Continent,
+	    	Location,	
 		Date,
 		DailyCases,
 		TotalCases,
@@ -225,7 +225,7 @@ ORDER BY 1,2,3
 --------------------------------------------------------------------------------------------------------
 
 --looking at constant parameters
-SELECT DISTINCT continent,
+SELECT DISTINCT 		continent,
 				location,
 				CONVERT(FLOAT,male_smokers) AS MaleSmokerPercentage,
 				CONVERT(FLOAT,female_smokers) AS FemaleSmokerPercentage,
